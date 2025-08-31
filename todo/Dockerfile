@@ -29,8 +29,8 @@ RUN sed '/^-e /d' /app/requirements.lock.txt > /app/requirements.runtime.txt \
 
 # Copy app source (kept separate for cache efficiency)
 # Bring in package files and the app module
-COPY src/the_project /app/the_project
-COPY app.py /app/the_project/app.py
+COPY src/todo /app/todo
+COPY app.py /app/todo/app.py
 
 ############################
 # Final: slim runtime, non-root
@@ -49,11 +49,11 @@ RUN useradd -u 10001 -ms /bin/bash appuser
 # Copy venv and app from builder
 COPY --from=builder /opt/venv /opt/venv
 WORKDIR /app
-COPY src/the_project /app/the_project
-COPY app.py /app/the_project/app.py
+COPY src/todo /app/todo
+COPY app.py /app/todo/app.py
 
 USER appuser
 EXPOSE 8000
 
 # Exec-form CMD with shell to expand ${PORT:-8000}
-CMD ["sh", "-c", "uvicorn the_project.app:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["sh", "-c", "uvicorn todo.app:app --host 0.0.0.0 --port ${PORT:-8000}"]

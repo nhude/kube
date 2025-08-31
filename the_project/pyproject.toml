@@ -1,0 +1,25 @@
+[project]
+name = "the-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Niko Huttu", email = "niko.huttu@solita.fi" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.116.1",
+    "uvicorn>=0.35.0",
+]
+
+[project.scripts]
+the-project = "the_project:main"
+
+[build-system]
+requires = ["uv_build>=0.8.14,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "python-dotenv>=1.1.1",
+]

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: string-generator
+spec:
+  selector:
+    matchLabels:
+      app: string-generator
+  template:
+    metadata:
+      labels:
+        app: string-generator
+    spec:
+      containers:
+      - name: string-generator
+        image: docker.io/solitanhuttu/nhude-string-gen:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 5000

@@ -30,6 +30,7 @@ RUN sed '/^-e /d' /app/requirements.lock.txt > /app/requirements.runtime.txt \
 # Copy app source (kept separate for cache efficiency)
 # Bring in package files and the app module
 COPY src/todo /app/todo
+COPY static /app/todo/static
 COPY app.py /app/todo/app.py
 
 ############################
@@ -50,6 +51,7 @@ RUN useradd -u 10001 -ms /bin/bash appuser
 COPY --from=builder /opt/venv /opt/venv
 WORKDIR /app
 COPY src/todo /app/todo
+COPY static /app/todo/static
 COPY app.py /app/todo/app.py
 
 USER appuser

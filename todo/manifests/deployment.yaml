@@ -14,9 +14,11 @@ spec:
       containers:
       - name: todo
         image: docker.io/solitanhuttu/todo:latest
+        ports:
+          - containerPort: 8000
         env: 
           - name: PORT
-            value: "1111"
+            value: "8000"
         resources:
           limits:
             memory: "128Mi"
